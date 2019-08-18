@@ -1,7 +1,21 @@
-{% extends 'base_template.html' %}
+{% extends 'page_template.html' %}
 
 {% block contents %}
 <br/>
-<a class="btn btn-gray btn-lg" href="/invoice_processing/" role="button">支払予定表</a><br/>
+<p>{{ page_title }}</p><br/>
+<p>Memo: [{{ memo_size }}]件</p><br/>
+
+{% if memo %}
+    <ul>
+    {% for memo_data in memo %}
+        <li>{{ memo_data.title }}: {{ memo_data.detail }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No memo data.</p>
+{% endif %}
+
+<p><a href="https://docs.djangoproject.com/ja/2.2/intro/tutorial01/" target="_blank" rel="noopener noreferrer">django チュートリアル</a></p>
+<p><a href="https://getbootstrap.com/docs/4.3/components/navbar/" target="_blank" rel="noopener noreferrer">bootstrap Nabvar 参考ページ</a></p>
 <br/>
 {% endblock contents %}

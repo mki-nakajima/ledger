@@ -6,19 +6,22 @@ Created on 2019/08/07
 
 '''
 
-from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from datetime import datetime
+from ledger.models.memo import Memo
 
 
 def index(request):
     # トップ画面表示
     now = datetime.now()
+    Memo.objects.create(
+        title="タイトル[" + str(Memo.objects.count() + 1) + "]",
+        detail=now.strftime("%Y/%m/%d-%H:%M:%S"),
+    )
     display_dict = {
-        "title": now.strftime("%Y/%m/%d %H:%M:%S"),
+        "page_title": now.strftime("%Y/%m/%d %H:%M:%S"),
+        "memo_size": Memo.objects.count(),
+        "memo": Memo.objects.all(),
     }
-    return HttpResponse("Hi Django~!!")
-#     return render_to_response('index.html',
-#                               display_dict,
-#                               context_instance=RequestContext(request))
+#     return HttpResponse("Hello World!!")
+    return render(request, 'index.html', display_dict)

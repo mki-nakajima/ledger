@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  {% load static %}
+  {% block head %}
+    <head>
+      {% block title %}
+        <title>{{ title|default:'台帳活用システム' }}</title>
+      {% endblock title %}
+
+      <meta charset="utf-8">
+      <meta http-equiv="Content-Language" content="Japanese" />
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+      {% block head_css %}
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+      {% endblock head_css %}
+
+      {% block head_script %}
+        <script type="text/javascript" src="{% static 'js/jquery-3.4.1.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.js'  %}"></script>
+      {% endblock head_script %}
+
+    </head>
+  {% endblock head %}
+
+  {% block body %}
+    <body class="fixed-header-body">
+      {% block system_header %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">{{ title|default:'台帳活用システム' }}</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">トップ <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">台帳１</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">台帳２</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">台帳３</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  機能
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">台帳１</a>
+                  <a class="dropdown-item" href="#">台帳２</a>
+                  <a class="dropdown-item" href="#">台帳３</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">データクリア</a>
+                </div>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      {% endblock system_header %}
+
+      {% block navigation %}
+      {% endblock navigation %}
+
+      {% block message_header %}
+        {% if messages %}
+          <div class="messages">
+            <ul class="messages">
+              {% for message in messages %}
+               <li class="message {{ message.tags }}">{{ message|linebreaks }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endblock message_header %}
+
+      <div class="contents">
+        {% block contents %}
+          <h3>Contents</h3>
+          <p>Overwrite here.</p>
+        {% endblock contents %}
+      </div>
+
+      {% block message_footer %}
+        {% if messages %}
+          <div class="messages">
+            <ul class="messages">
+              {% for message in messages %}
+               <li class="message {{ message.tags }}">{{ message|linebreaks }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endblock message_footer %}
+
+      {% block system_footer %}
+        <div class="" style="text-align: center;">&copy; footer message.</div>
+      {% endblock system_footer %}
+    </body>
+  {% endblock body %}
+</html>
